@@ -1,0 +1,521 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Realtor Content Lab — Clase en vivo 17 de diciembre</title>
+<meta name="description" content="Clase en vivo para Realtors: define tu nicho, crea guiones y carruseles con Claude y Canva, edita en CapCut y sal con tu primer video publicado. 17 de diciembre.">
+<meta property="og:title" content="Realtor Content Lab — Clase en vivo 17 de diciembre">
+<meta property="og:description" content="El 2026 cambió: los leads llegan por redes y Marketing Digital con IA. Sal de la clase con tu primer video publicado.">
+<meta property="og:image" content="assets/icon.png">
+<meta name="theme-color" content="#03040B">
+<link rel="icon" href="assets/icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://www.paypal.com/sdk/js?client-id=BAA_kZteoBwV6bsQ4BCr0meIzIinlzXdt8rmFFjALQvJ8xTVyNlfJKUYRIOlx5zKFS40Rjbhf_wlpOs3Po&components=hosted-buttons&disable-funding=venmo&currency=USD" crossorigin="anonymous" async id="paypal-sdk"></script>
+<style>
+:root{
+  --bg:#03040B; --navy:#050A35; --deep:#060A24; --blue:#1446FF; --blue2:#3D6BFF; --sky:#8FB0FF;
+  --text:#FFFFFF; --muted:#A9B2D9; --soft:#DCE4FF; --ink:#0A0F2C; --ink2:#5A6187; --paper:#F2F4FB;
+  --glass:rgba(255,255,255,.07); --line:rgba(255,255,255,.14);
+  --ease:cubic-bezier(.2,.7,.2,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Outfit',system-ui,sans-serif;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;overflow-x:hidden;line-height:1.5}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+.wrap{width:100%;max-width:1280px;margin:0 auto;padding:0 24px}
+.grad-text{background:linear-gradient(120deg,#9DB8FF,#3D6BFF 60%,#8FB0FF);-webkit-background-clip:text;background-clip:text;color:transparent;background-size:200% 100%;animation:shine 6s linear infinite}
+@keyframes shine{to{background-position:-200% 0}}
+
+/* ---------- pill & buttons ---------- */
+.pill{display:inline-flex;align-items:center;gap:10px;padding:8px 18px;border-radius:999px;background:rgba(255,255,255,.06);border:1px solid var(--line);font-size:15px;color:#E6EAFF;backdrop-filter:blur(10px)}
+.pill::before{content:"";width:8px;height:8px;border-radius:50%;background:#4D7BFF;box-shadow:0 0 10px #4D7BFF;animation:pulse 2s infinite}
+.pill.light{background:rgba(20,70,255,.07);border-color:rgba(20,70,255,.16);color:var(--blue)}
+@keyframes pulse{50%{box-shadow:0 0 2px #4D7BFF;opacity:.6}}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:8px 8px 8px 24px;border-radius:999px;background:linear-gradient(135deg,#3A6BFF,#1235E0);border:1px solid rgba(143,168,255,.6);font-weight:500;font-size:16px;box-shadow:0 10px 30px -6px rgba(42,85,255,.55);transition:transform .3s var(--ease),box-shadow .3s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 16px 40px -6px rgba(42,85,255,.75)}
+.btn i{width:36px;height:36px;border-radius:50%;background:#fff;display:grid;place-items:center;transition:transform .3s var(--ease)}
+.btn:hover i{transform:translateX(3px)}
+.paybox{display:flex;flex-direction:column;align-items:center;gap:14px;width:100%}
+.paypal-slot{width:100%;max-width:360px;min-height:56px}
+.paypal-slot:empty::before{content:"Cargando botón de pago…";display:grid;place-items:center;height:56px;border-radius:8px;background:#FFC439;color:#111;font-weight:500}
+.secure{font-size:14px;color:#8E97C2;text-align:center}
+.btn-lg{font-size:18px;padding:10px 10px 10px 30px}.btn-lg i{width:44px;height:44px}
+.paycard{width:100%;max-width:440px;padding:20px 24px 8px;border-radius:24px;background:#fff;color:var(--ink);text-align:left;box-shadow:0 30px 60px -20px rgba(3,4,11,.6)}
+.paycard .paypal-slot{max-width:none}
+/* PayPal hosted card: keep title, price and pay buttons; the page already explains the class */
+.paycard [id^="carousel-container"],.paycard .item-description{display:none!important}
+.paycard [id$="-wrapper"]{margin:0!important}
+.paycard .item-header{font-family:'Outfit',sans-serif!important;font-size:17px!important;line-height:1.3!important}
+
+/* ---------- nav ---------- */
+.nav{position:fixed;inset:0 0 auto;z-index:50;transition:background .4s,backdrop-filter .4s,border-color .4s;border-bottom:1px solid transparent}
+.nav.scrolled{background:rgba(3,4,11,.72);backdrop-filter:blur(16px);border-color:rgba(255,255,255,.06)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:92px;transition:height .4s}
+.nav.scrolled .wrap{height:72px}
+.logo img{height:64px;width:auto;transition:height .4s}
+.nav.scrolled .logo img{height:50px}
+.links{display:flex;gap:40px;font-size:15px}
+.links a{opacity:.62;transition:opacity .2s}
+.links a:hover,.links a.active{opacity:1}
+.burger{display:none;width:44px;height:44px;border-radius:12px;background:var(--glass);border:1px solid var(--line);place-items:center;cursor:pointer}
+.burger span,.burger span::before,.burger span::after{display:block;width:18px;height:2px;background:#fff;border-radius:2px;position:relative;transition:.3s}
+.burger span::before,.burger span::after{content:"";position:absolute;left:0}
+.burger span::before{top:-6px}.burger span::after{top:6px}
+.nav.open .burger span{background:transparent}
+.nav.open .burger span::before{top:0;transform:rotate(45deg)}
+.nav.open .burger span::after{top:0;transform:rotate(-45deg)}
+
+/* ---------- hero ---------- */
+.hero{position:relative;overflow:hidden;background:linear-gradient(180deg,#02030A 0%,#050A35 45%,#0D2BD6 100%);padding:180px 0 0;text-align:center}
+.rays{position:absolute;inset:0;display:flex;align-items:flex-end;pointer-events:none;will-change:transform}
+.ray{flex:1;transform-origin:bottom;border-left:1px solid rgba(175,195,255,.08);background:linear-gradient(180deg,rgba(26,60,255,0) 0%,rgba(28,63,232,var(--a1)) 70%,rgba(92,130,255,var(--a2)) 100%);transform:scaleY(0);animation:rayUp 1.6s var(--ease) forwards,shimmer 5s ease-in-out infinite;animation-delay:var(--d),calc(var(--d) + 1.6s)}
+@keyframes rayUp{to{transform:scaleY(1)}}
+@keyframes shimmer{50%{opacity:.65}}
+.glow{position:absolute;left:50%;bottom:-260px;width:1100px;height:520px;transform:translateX(-50%);border-radius:50%;background:#2E5BFF;filter:blur(160px);opacity:.75;pointer-events:none}
+.orbit{position:absolute;border:1.5px dashed rgba(92,130,255,.55);border-radius:50%;pointer-events:none;animation:spin 40s linear infinite}
+.orbit.o1{width:260px;height:260px;left:10%;top:150px}
+.orbit.o2{width:220px;height:220px;right:11%;top:420px;animation-direction:reverse}
+.orbit::after{content:"";position:absolute;top:-5px;left:50%;width:9px;height:9px;border-radius:50%;background:#8FB0FF;box-shadow:0 0 12px #8FB0FF}
+@keyframes spin{to{transform:rotate(360deg)}}
+.hero-copy{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;gap:24px}
+.intro{font-size:20px;font-weight:300;color:#C9D1F5;max-width:760px}
+h1{font-size:clamp(38px,5.6vw,72px);font-weight:600;line-height:1.06;letter-spacing:-.025em;max-width:1080px}
+.sub{font-size:19px;color:var(--muted);max-width:720px}
+.hero-cards{position:relative;z-index:2;display:flex;justify-content:center;align-items:flex-end;gap:28px;margin-top:80px;will-change:transform}
+.card-glass{width:300px;padding:28px;border-radius:28px;background:var(--glass);border:1px solid rgba(255,255,255,.18);backdrop-filter:blur(24px);text-align:left;display:flex;flex-direction:column;gap:14px;margin-bottom:-1px}
+.card-glass.blue{background:linear-gradient(135deg,rgba(61,107,255,.55),rgba(10,26,140,.35));border-color:rgba(157,180,255,.5);box-shadow:0 0 60px rgba(47,91,255,.5);margin-bottom:-1px}
+.float{animation:float 6s ease-in-out infinite}
+.float.late{animation-delay:-3s}
+@keyframes float{50%{transform:translateY(-12px)}}
+.small{font-size:15px;color:#AEB7E0}
+.big{font-size:30px;font-weight:600;letter-spacing:-.04em;line-height:1.1}
+.live{display:flex;align-items:center;gap:8px;font-size:14px;color:#DDE3FF}
+.live::before{content:"";width:8px;height:8px;border-radius:50%;background:#FF4D6A;animation:pulse 1.4s infinite}
+.card-main{width:380px;padding:28px 28px 36px;border-radius:32px 32px 0 0;background:linear-gradient(180deg,#fff,#E9EEFF);box-shadow:0 0 0 6px rgba(255,255,255,.9);text-align:left;display:flex;flex-direction:column;gap:14px;color:var(--ink)}
+.card-main h3{font-size:28px;font-weight:500;line-height:1.12;letter-spacing:-.05em;max-width:300px;margin:4px 0}
+.step{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:14px;background:#fff;border:1px solid rgba(20,70,255,.1);font-size:15px;font-weight:500;color:#1B2148;opacity:0;transform:translateX(-14px);transition:.6s var(--ease)}
+.step svg{flex:none}
+.in .step{opacity:1;transform:none}
+.in .step:nth-child(3){transition-delay:.15s}.in .step:nth-child(4){transition-delay:.3s}.in .step:nth-child(5){transition-delay:.45s}.in .step:nth-child(6){transition-delay:.6s}
+.ba .lbl{font-size:13px;letter-spacing:.08em;color:#C7D3FF}
+.ba .val{font-size:26px;font-weight:600;letter-spacing:-.04em}
+.ba.dim{opacity:.5}
+.arrow-down{animation:bob 1.6s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(5px)}}
+
+/* ---------- glass icons ---------- */
+.gi{position:relative;width:72px;height:72px;flex:none}
+.gi .b{position:absolute;background:var(--blue);transition:transform .6s var(--ease)}
+.gi .f{position:absolute;background:rgba(180,197,255,.7);backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px);display:grid;place-items:center;border:1px solid rgba(255,255,255,.35)}
+.card:hover .gi .b{transform:translate(4px,-4px) rotate(6deg)}
+.i1 .b{width:32px;height:32px;border-radius:50%;right:4px;top:5px}.i1 .f{width:48px;height:46px;border-radius:14px;left:6px;bottom:6px}
+.i2 .b{width:33px;height:42px;border-radius:8px;right:6px;top:4px}.i2 .f{width:40px;height:50px;border-radius:10px;left:8px;bottom:4px}
+.i3 .b{width:36px;height:44px;border-radius:9px;right:6px;top:6px;transform:rotate(8deg)}.i3 .f{width:40px;height:47px;border-radius:10px;left:6px;bottom:4px}
+.card:hover .i3 .b{transform:translate(4px,-4px) rotate(14deg)}
+.i4 .b{width:34px;height:34px;border-radius:50%;right:4px;bottom:4px}.i4 .f{width:52px;height:40px;border-radius:12px;left:5px;top:10px}
+.i5 .b{width:32px;height:32px;border-radius:10px;right:6px;top:6px}.i5 .f{width:50px;height:50px;border-radius:50%;left:6px;bottom:4px}
+.hi .gi .b{background:#fff}.hi .gi .f{background:rgba(127,160,255,.6)}
+
+/* ---------- learn ---------- */
+.learn{background:var(--paper);color:var(--ink);padding:120px 0 130px}
+.head{display:flex;flex-direction:column;align-items:center;gap:18px;text-align:center;margin-bottom:64px}
+.head h2{font-size:clamp(34px,4.4vw,56px);font-weight:500;line-height:1.08;letter-spacing:-.045em}
+.head p{font-size:18px;color:var(--ink2);max-width:640px}
+.lgrid{display:grid;grid-template-columns:repeat(6,1fr);gap:20px}
+.card{border-radius:28px;padding:34px;min-height:300px;display:flex;flex-direction:column;justify-content:space-between;background:#fff;border:1px solid rgba(20,70,255,.08);box-shadow:0 12px 32px -8px rgba(26,42,108,.08);transition:transform .5s var(--ease),box-shadow .5s}
+.card:hover{transform:translateY(-6px);box-shadow:0 24px 50px -12px rgba(26,42,108,.18)}
+.lgrid .card{grid-column:span 2}
+.lgrid .card:nth-child(4),.lgrid .card:nth-child(5){grid-column:span 3}
+.card .top{display:flex;justify-content:space-between;align-items:flex-start}
+.num{font-size:16px;font-weight:500;color:var(--blue);opacity:.55}
+.card h3{font-size:24px;font-weight:500;letter-spacing:-.04em;margin-bottom:10px}
+.card p{font-size:16px;color:var(--ink2)}
+.card.hi{background:linear-gradient(135deg,#2F5BFF,#0A1FB8);color:#fff;border-color:rgba(124,155,255,.6);box-shadow:0 24px 50px -8px rgba(20,70,255,.35)}
+.card.hi p{color:var(--soft)}.card.hi .num{color:#fff;opacity:.7}
+
+/* ---------- instructor ---------- */
+.instructor{position:relative;padding:140px 0;overflow:hidden}
+.instructor::before{content:"";position:absolute;width:700px;height:500px;left:-120px;top:260px;border-radius:50%;background:#1E46FF;opacity:.5;filter:blur(200px)}
+.igrid{position:relative;display:grid;grid-template-columns:520px 1fr;gap:88px;align-items:center}
+.photo{position:relative;aspect-ratio:520/640;border-radius:32px;overflow:hidden;background:linear-gradient(180deg,#050A35,#0E2BD6 55%,#2F5BFF);border:1px solid rgba(255,255,255,.12)}
+.photo .prays{position:absolute;inset:0;display:flex}
+.photo .prays span{flex:1;background:linear-gradient(180deg,transparent,rgba(175,195,255,.12))}
+.photo .pglow{position:absolute;width:80%;aspect-ratio:1;left:20%;top:8%;border-radius:50%;background:#5C82FF;filter:blur(90px);opacity:.7}
+.photo img{position:absolute;left:-4%;top:-1%;width:108%;max-width:none;height:auto;will-change:transform}
+.namebar{position:absolute;left:24px;right:24px;bottom:24px;display:flex;justify-content:space-between;align-items:center;padding:20px 24px;border-radius:20px;background:linear-gradient(135deg,rgba(20,70,255,.92),rgba(10,26,140,.92));backdrop-filter:blur(20px)}
+.namebar b{display:block;font-size:22px;font-weight:500}
+.namebar small{font-size:14px;color:var(--soft)}
+.namebar svg{animation:spin 8s linear infinite}
+.icol{display:flex;flex-direction:column;gap:26px;align-items:flex-start}
+.icol h2{font-size:clamp(32px,3.6vw,48px);font-weight:500;line-height:1.1;letter-spacing:-.05em}
+.bio{font-size:18px;color:var(--muted);line-height:1.6}
+.chips{display:flex;flex-wrap:wrap;gap:10px}
+.chips span{padding:8px 14px;border-radius:999px;background:rgba(20,70,255,.16);border:1px solid rgba(77,123,255,.35);font-size:14px;font-weight:500;color:#C9D6FF}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;width:100%}
+.stat{padding:22px;border-radius:22px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12)}
+.stat b{display:block;font-size:32px;font-weight:600;letter-spacing:-.05em}
+.stat span{font-size:14px;color:#8E97C2}
+.quote{display:flex;gap:14px;align-items:center;font-size:17px;font-weight:300;color:var(--soft)}
+.quote::before{content:"";width:3px;align-self:stretch;border-radius:2px;background:var(--blue2)}
+
+/* ---------- modules ---------- */
+.modules{padding:130px 0;background:linear-gradient(180deg,var(--bg),var(--deep));border-top:1px solid rgba(255,255,255,.06)}
+.mhead{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:56px}
+.mhead h2{font-size:clamp(36px,4.6vw,60px);font-weight:500;line-height:1.04;letter-spacing:-.05em;margin-top:20px}
+.total{text-align:right}.total b{display:block;font-size:40px;font-weight:600;letter-spacing:-.05em}.total span{color:#8E97C2}
+.mgrid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.mod{display:flex;flex-direction:column;gap:22px;padding:36px;border-radius:28px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.12);transition:transform .5s var(--ease),border-color .5s,background .5s}
+.mod:hover{transform:translateY(-6px);border-color:rgba(124,155,255,.5);background:rgba(255,255,255,.05)}
+.mod.hi{background:linear-gradient(180deg,#2F5BFF,#071066);border-color:rgba(124,155,255,.5);box-shadow:0 20px 60px -10px rgba(20,70,255,.35)}
+.mod .mt{display:flex;justify-content:space-between;align-items:center}
+.mod .mn{font-size:52px;font-weight:300;letter-spacing:-.06em;line-height:1}
+.dur{display:flex;align-items:center;gap:8px;padding:8px 14px;border-radius:999px;background:rgba(255,255,255,.07);font-size:14px;font-weight:500}
+.mod.hi .dur{background:rgba(255,255,255,.16)}
+.mod h3{font-size:26px;font-weight:500;letter-spacing:-.04em}
+.mod .mi{color:var(--muted)}.mod.hi .mi{color:var(--soft)}
+.mod ul{list-style:none;display:flex;flex-direction:column;gap:12px;flex:1}
+.mod li{display:flex;gap:12px;color:rgba(230,234,255,.92)}
+.mod li::before{content:"";flex:none;width:14px;height:14px;margin-top:5px;background:#4D7BFF;clip-path:polygon(50% 0,62% 38%,100% 50%,62% 62%,50% 100%,38% 62%,0 50%,38% 38%)}
+.mod.hi li::before{background:#fff}
+.mod ol{list-style:none;counter-reset:s;display:flex;flex-direction:column;gap:12px;flex:1}
+.mod ol li::before{counter-increment:s;content:counter(s);clip-path:none;width:26px;height:26px;margin:0;border-radius:50%;background:var(--blue);display:grid;place-items:center;font-size:13px;font-weight:600}
+.take{display:flex;gap:14px;align-items:center;padding:16px 18px;border-radius:18px;background:rgba(20,70,255,.14);border:1px solid rgba(77,123,255,.25);font-size:15px;font-weight:500}
+.take em{font-style:normal;color:var(--sky)}
+.mod.hi .take{background:rgba(255,255,255,.14);border-color:rgba(255,255,255,.25)}.mod.hi .take em{color:#fff}
+
+/* ---------- CTA ---------- */
+.cta{padding:40px 0 120px;background:var(--deep)}
+.panel{position:relative;overflow:hidden;border-radius:40px;padding:96px 80px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:24px;background:linear-gradient(180deg,#0A1A8C,#2F5BFF);border:1px solid rgba(157,180,255,.4)}
+.panel .rays .ray{--a1:.06;--a2:.14;background:linear-gradient(180deg,rgba(255,255,255,0),rgba(255,255,255,var(--a2)))}
+.panel h2{position:relative;font-size:clamp(32px,4.4vw,56px);font-weight:500;line-height:1.06;letter-spacing:-.045em;max-width:1000px}
+.panel p{position:relative;font-size:19px;color:var(--soft);max-width:680px}
+.incl{position:relative;display:flex;flex-wrap:wrap;justify-content:center;gap:12px 28px;font-weight:500}
+.incl span{display:flex;align-items:center;gap:8px}
+.panel .paybox,.panel .pill{position:relative}
+.panel .secure{color:var(--soft)}
+
+footer{border-top:1px solid rgba(255,255,255,.08)}
+footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:20px;padding-top:40px;padding-bottom:40px;font-size:14px;color:#8E97C2}
+footer img{height:56px}
+footer nav{display:flex;gap:28px}footer nav a{color:rgba(255,255,255,.7)}footer nav a:hover{color:#fff}
+
+/* ---------- reveal animations ---------- */
+.rv{opacity:0;transform:translateY(40px);filter:blur(8px);transition:opacity 1s var(--ease),transform 1s var(--ease),filter 1s var(--ease);transition-delay:var(--rd,0s)}
+.rv.in{opacity:1;transform:none;filter:none}
+.rv.zoom{transform:scale(.92) translateY(30px)}
+.rv.zoom.in{transform:none}
+.load{opacity:0;transform:translateY(24px);animation:up 1s var(--ease) forwards;animation-delay:var(--ld,0s)}
+@keyframes up{to{opacity:1;transform:none}}
+
+/* ---------- responsive ---------- */
+@media (max-width:1100px){
+  .igrid{grid-template-columns:1fr 1fr;gap:48px}
+  .orbit{display:none}
+}
+@media (max-width:900px){
+  .links,.nav .wrap>.btn{display:none}
+  .burger{display:grid}
+  .nav.open{background:rgba(3,4,11,.95);backdrop-filter:blur(16px)}
+  .nav.open .links{display:flex;flex-direction:column;gap:6px;position:absolute;top:100%;left:0;right:0;padding:12px 24px 28px;background:rgba(3,4,11,.95)}
+  .nav.open .links a{opacity:1;font-size:20px;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.08)}
+  .hero{padding-top:130px}
+  .intro{font-size:17px}.sub{font-size:17px}
+  .hero-cards{flex-direction:column;align-items:center;gap:20px;margin-top:56px;padding:0 24px}
+  .card-main{order:-1;width:100%;max-width:400px;border-radius:32px}
+  .card-glass{width:100%;max-width:400px}
+  .card-glass.blue{margin-bottom:56px}
+  .lgrid{grid-template-columns:1fr}
+  .lgrid .card,.lgrid .card:nth-child(4),.lgrid .card:nth-child(5){grid-column:auto}
+  .card{min-height:0;gap:28px;padding:28px}
+  .learn,.modules{padding:88px 0}
+  .head{margin-bottom:40px}
+  .instructor{padding:88px 0}
+  .igrid{grid-template-columns:1fr;gap:40px}
+  .photo{max-width:440px;width:100%;margin:0 auto}
+  .stats{grid-template-columns:1fr 1fr 1fr;gap:10px}
+  .stat{padding:16px}.stat b{font-size:24px}.stat span{font-size:12px}
+  .mhead{flex-direction:column;align-items:flex-start}
+  .total{text-align:left}
+  .mgrid{grid-template-columns:1fr}
+  .mod{padding:28px}
+  .panel{padding:64px 24px;border-radius:28px}
+  footer .wrap{flex-direction:column;text-align:center}
+}
+@media (max-width:480px){
+  .stats{grid-template-columns:1fr}
+  .namebar{left:14px;right:14px;bottom:14px;padding:16px 18px}
+  .namebar b{font-size:19px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .ray{transform:none}.rv,.load,.step{opacity:1;transform:none;filter:none}
+}
+</style>
+</head>
+<body>
+
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a href="#inicio" class="logo"><img src="assets/logo.png" alt="Realtor Content Lab"></a>
+    <nav class="links" id="links">
+      <a href="#inicio" class="active">La clase</a>
+      <a href="#aprenderas">Qué aprenderás</a>
+      <a href="#instructor">Instructor</a>
+      <a href="#modulos">Módulos</a>
+    </nav>
+    <a href="#inscripcion" class="btn">Reservar mi lugar <i><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="#1446FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></i></a>
+    <button class="burger" id="burger" aria-label="Abrir menú"><span></span></button>
+  </div>
+</header>
+
+<main>
+<!-- ================= HERO ================= -->
+<section class="hero" id="inicio">
+  <div class="rays" id="heroRays"></div>
+  <div class="glow"></div>
+  <div class="orbit o1"></div><div class="orbit o2"></div>
+  <div class="wrap hero-copy">
+    <span class="pill load" style="--ld:.1s">Clase 100% en vivo · 17 de diciembre</span>
+    <p class="intro load" style="--ld:.25s">Si eres Realtor y tus ventas o leads llegan a través de referidos —y no vendiste nada el resto del año—, déjame decirte algo:</p>
+    <h1 class="load" style="--ld:.4s">El 2026 cambió. Ahora los leads llegan a través de <span class="grad-text">las redes</span> y el <span class="grad-text">Marketing Digital con IA.</span></h1>
+    <p class="sub load" style="--ld:.55s">Por eso preparé una clase para ti que este 17 de diciembre tendremos totalmente en vivo, y cuesta menos de lo que gastas en una salida de fin de semana. Si quieres saber más, inscríbete.</p>
+    <div class="paybox load" style="--ld:.7s">
+      <a href="#inscripcion" class="btn btn-lg">Quiero inscribirme <i><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="#1446FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></i></a>
+      <p class="secure">🔒 Pago seguro con PayPal o tarjeta · Cupos limitados</p>
+    </div>
+  </div>
+
+  <div class="hero-cards" id="heroCards">
+    <div class="card-glass float load" style="--ld:.9s">
+      <div class="gi i5" style="width:56px;height:56px">
+        <div class="b" style="width:26px;height:26px;border-radius:8px;right:2px;top:2px"></div>
+        <div class="f" style="width:44px;height:44px;border-radius:12px;left:2px;bottom:2px;font-weight:700;font-size:18px">17</div>
+      </div>
+      <span class="small">Clase en vivo</span>
+      <span class="big">17 de diciembre</span>
+      <span class="live">Online · Totalmente en vivo</span>
+    </div>
+    <div class="card-main load rv" id="resultCard" style="--ld:.8s">
+      <span class="pill light" style="align-self:flex-start">Tu resultado al terminar</span>
+      <h3>Tu primer video editado y publicado</h3>
+      <div class="step"><svg width="22" height="22" viewBox="0 0 22 22"><circle cx="11" cy="11" r="11" fill="#1446FF"/><path d="M6.5 11.3l3 3 6-6.3" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Nicho y cliente definido</div>
+      <div class="step"><svg width="22" height="22" viewBox="0 0 22 22"><circle cx="11" cy="11" r="11" fill="#1446FF"/><path d="M6.5 11.3l3 3 6-6.3" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Guion listo para grabar</div>
+      <div class="step"><svg width="22" height="22" viewBox="0 0 22 22"><circle cx="11" cy="11" r="11" fill="#1446FF"/><path d="M6.5 11.3l3 3 6-6.3" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Carrusel listo para publicar</div>
+      <div class="step"><svg width="22" height="22" viewBox="0 0 22 22"><circle cx="11" cy="11" r="11" fill="#1446FF"/><path d="M6.5 11.3l3 3 6-6.3" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Video editado en CapCut</div>
+    </div>
+    <div class="card-glass blue float late load" style="--ld:1s">
+      <span class="pill" style="align-self:flex-start">Así llegan los leads</span>
+      <div class="ba dim"><div class="lbl">ANTES</div><div class="val">Solo referidos</div></div>
+      <svg class="arrow-down" width="24" height="28" viewBox="0 0 24 28" fill="none"><path d="M12 2v22M5 17l7 7 7-7" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="3 4"/></svg>
+      <div class="ba"><div class="lbl">2026</div><div class="val">Redes + IA</div></div>
+      <span class="small" style="color:#DCE4FF">Contenido que trabaja por ti todo el año.</span>
+    </div>
+  </div>
+</section>
+
+<!-- ================= APRENDERÁS ================= -->
+<section class="learn" id="aprenderas">
+  <div class="wrap">
+    <div class="head">
+      <span class="pill light rv">En Realtor Content Lab</span>
+      <h2 class="rv" style="--rd:.1s">Este <span style="color:var(--blue)">17 de diciembre</span> aprenderás a:</h2>
+      <p class="rv" style="--rd:.2s">Una sola clase, práctica y en vivo. Sales con tu marca clara, tus piezas de contenido listas y tu primer video publicado.</p>
+    </div>
+    <div class="lgrid">
+      <article class="card rv">
+        <div class="top"><div class="gi i1"><div class="b"></div><div class="f"><svg width="26" height="26" viewBox="0 0 26 26" fill="none"><circle cx="13" cy="8" r="5" fill="#fff"/><path d="M4 23c1.4-5.5 5-8 9-8s7.6 2.5 9 8" stroke="#fff" stroke-width="3" stroke-linecap="round"/></svg></div></div><span class="num">01</span></div>
+        <div><h3>Tu nicho y tu cliente</h3><p>Definir tu nicho y a quién le hablas, para que tu contenido deje de ser genérico.</p></div>
+      </article>
+      <article class="card rv" style="--rd:.1s">
+        <div class="top"><div class="gi i2"><div class="b"></div><div class="f"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M3 5h16M3 11h16M3 17h10" stroke="#fff" stroke-width="3" stroke-linecap="round"/></svg></div></div><span class="num">02</span></div>
+        <div><h3>Guiones que sirven</h3><p>Crear guiones con Claude y saber cuáles sirven y cuáles no, junto a un embudo.</p></div>
+      </article>
+      <article class="card rv" style="--rd:.2s">
+        <div class="top"><div class="gi i3"><div class="b"></div><div class="f"><svg width="24" height="26" viewBox="0 0 24 26" fill="none"><rect x="1" y="2" width="22" height="13" rx="3" fill="#fff" fill-opacity=".9"/><circle cx="5" cy="22" r="2.5" fill="#fff"/><circle cx="12" cy="22" r="2.5" fill="#fff" fill-opacity=".6"/><circle cx="19" cy="22" r="2.5" fill="#fff" fill-opacity=".6"/></svg></div></div><span class="num">03</span></div>
+        <div><h3>Carruseles con tu estilo</h3><p>Armar carruseles con Claude y Canva con tu propio estilo.</p></div>
+      </article>
+      <article class="card rv">
+        <div class="top"><div class="gi i4"><div class="b"></div><div class="f"><svg width="20" height="22" viewBox="0 0 20 22"><path d="M3 2.5v17l14-8.5z" fill="#fff" stroke="#fff" stroke-width="2" stroke-linejoin="round"/></svg></div></div><span class="num">04</span></div>
+        <div><h3>Video en CapCut</h3><p>Editar un video sencillo en CapCut, paso a paso.</p></div>
+      </article>
+      <article class="card hi rv" style="--rd:.1s">
+        <div class="top"><div class="gi i5"><div class="b"></div><div class="f"><svg width="26" height="22" viewBox="0 0 26 22" fill="none"><path d="M3 11.5l7 7 13-15" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div><span class="num">05</span></div>
+        <div><h3>Tu primer video publicado</h3><p>Salir con tu primer video editado y publicado.</p></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= INSTRUCTOR ================= -->
+<section class="instructor" id="instructor">
+  <div class="wrap igrid">
+    <div class="photo rv zoom" id="photo">
+      <div class="prays"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+      <div class="pglow"></div>
+      <img src="assets/diego.webp" alt="Diego Araque" id="photoImg" loading="lazy">
+      <div class="namebar">
+        <div><b>Diego Araque</b><small>Estratega de marketing digital · Realtor</small></div>
+        <svg width="22" height="22" viewBox="0 0 22 22"><path d="M11 0c.6 5.6 4.4 9.4 11 11-6.6 1.6-10.4 5.4-11 11-.6-5.6-4.4-9.4-11-11C6.6 9.4 10.4 5.6 11 0z" fill="#fff"/></svg>
+      </div>
+    </div>
+    <div class="icol">
+      <span class="pill rv">Quién dicta la clase</span>
+      <h2 class="rv" style="--rd:.1s">Hola, soy Diego. Te voy a enseñar a <span class="grad-text">convertir tu contenido en leads.</span></h2>
+      <p class="bio rv" style="--rd:.2s">Soy estratega de marketing digital, creador de contenido y agente inmobiliario en los Valles de Quito (Cumbayá, Tumbaco y Puembo). Fundé Trivan, una agencia de marketing, diseño y multimedia desde donde he posicionado más de cinco marcas desde cero —sobre todo inmobiliarias y marcas personales— con contenido 360°, diseño con IA, producción de video y campañas en Meta Ads.</p>
+      <div class="chips rv" style="--rd:.25s"><span>Fundador de Trivan</span><span>Estrategia de contenido</span><span>Producción de video</span><span>Diseño con IA</span><span>Meta Ads</span><span>Captación de prospectos</span></div>
+      <div class="stats rv" style="--rd:.3s">
+        <div class="stat"><b data-count="5" data-prefix="+">+5</b><span>marcas posicionadas desde cero</span></div>
+        <div class="stat"><b>Realtor</b><span>activo en los Valles de Quito</span></div>
+        <div class="stat"><b data-count="2" data-suffix=" países">2 países</b><span>Ecuador y Venezuela</span></div>
+      </div>
+      <p class="quote rv" style="--rd:.4s">“No necesitas ser experto en tecnología. Necesitas un método y salir con algo publicado.”</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= MÓDULOS ================= -->
+<section class="modules" id="modulos">
+  <div class="wrap">
+    <div class="mhead">
+      <div><span class="pill rv">Agenda del 17 de diciembre</span><h2 class="rv" style="--rd:.1s">Módulos que<br>trabajaremos ese día</h2></div>
+      <div class="total rv" style="--rd:.2s"><b>2 h 20 min</b><span>de práctica guiada, en vivo</span></div>
+    </div>
+    <div class="mgrid">
+      <article class="mod rv">
+        <div class="mt"><span class="mn">01</span><span class="dur">⏱ 25 min</span></div>
+        <h3>Módulo 1: Tu nicho y tu cliente</h3>
+        <p class="mi">Aquí entra el marketing con nicho, en versión práctica. Con Claude defines:</p>
+        <ul><li>A quién le hablas (tu cliente ideal, no “todo el mundo”).</li><li>En qué zona o tipo de propiedad te posicionas.</li><li>Tu tono de voz.</li><li>3 temas de contenido que vas a repetir.</li></ul>
+        <div class="take">✅ <span><em>Te llevas:</em> tu “cerebro de marca” guardado en Claude, que usarás para todo lo demás.</span></div>
+      </article>
+      <article class="mod hi rv" style="--rd:.1s">
+        <div class="mt"><span class="mn">02</span><span class="dur">⏱ 30 min</span></div>
+        <h3>Módulo 2: Guiones que sirven</h3>
+        <ul><li>Sacas 5 ideas desde tu nicho, eliges 1 y pides un guion de 30 a 45 segundos (gancho, desarrollo y cierre).</li><li>Aprendes el filtro de 3 preguntas para decidir qué usar y qué descartar: ¿suena a mí?, ¿es verdad?, ¿le sirve a mi cliente?</li></ul>
+        <div class="take">✅ <span><em>Te llevas:</em> un guion listo para grabar.</span></div>
+      </article>
+      <article class="mod rv">
+        <div class="mt"><span class="mn">03</span><span class="dur">⏱ 30 min</span></div>
+        <h3>Módulo 3: Carruseles con Claude + Canva</h3>
+        <ul><li>Pides la estructura de un carrusel de 6 a 7 láminas con esa misma idea.</li><li>Canva lo diseña con tu estilo.</li></ul>
+        <div class="take">✅ <span><em>Te llevas:</em> un carrusel listo para publicar.</span></div>
+      </article>
+      <article class="mod rv" style="--rd:.1s">
+        <div class="mt"><span class="mn">04</span><span class="dur">⏱ 55 min</span></div>
+        <h3>Módulo 4: Grabar y editar en CapCut</h3>
+        <p class="mi">Versión sencilla: 15 min de grabación y 40 de CapCut. Solo 5 acciones, nada más:</p>
+        <ol><li>Importar el video y cortar lo que sobra.</li><li>Poner subtítulos automáticos.</li><li>Agregar música y bajarle el volumen.</li><li>Ponerle un texto de gancho al inicio.</li><li>Exportar en formato vertical.</li></ol>
+        <div class="take">✅ <span><em>Te llevas:</em> tu primer video editado y publicado.</span></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CTA ================= -->
+<section class="cta" id="inscripcion">
+  <div class="wrap">
+    <div class="panel rv zoom">
+      <div class="rays" id="ctaRays"></div>
+      <span class="pill">17 de diciembre · En vivo</span>
+      <h2>Tu próximo cliente ya está en redes.<br>¿Te va a encontrar a ti?</h2>
+      <p>Reserva tu lugar en la clase. Cuesta menos de lo que gastas en una salida de fin de semana, y sales con tu primer video publicado.</p>
+      <div class="incl"><span>✔ Clase 100% en vivo</span><span>✔ 4 módulos prácticos</span><span>✔ Tu primer video publicado</span></div>
+      <div class="paybox">
+        <div class="paycard">
+          <div id="paypal-container-X56FHS6C8M9FG" class="paypal-slot"></div>
+        </div>
+        <p class="secure">Pago único y seguro con PayPal o tarjeta</p>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <img src="assets/logo.png" alt="Realtor Content Lab">
+    <span>© <span id="year">2026</span> Realtor Content Lab. Todos los derechos reservados.</span>
+    <nav><a href="https://www.instagram.com/diegoaraque.mkt/" target="_blank" rel="noopener">Instagram</a><a href="#">TikTok</a><a href="#">Contacto</a></nav>
+  </div>
+</footer>
+
+<script>
+(() => {
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Light rays
+  function makeRays(el, n, hero){
+    if(!el) return;
+    for(let i=0;i<n;i++){
+      const d=Math.abs(i-(n-1)/2)/((n-1)/2);
+      const r=document.createElement('span'); r.className='ray';
+      r.style.height=(hero ? (55+35*d+((i*37)%12)) : (40+50*Math.abs(Math.sin(i*.7))))+'%';
+      r.style.setProperty('--a1',(.18+.25*d).toFixed(2));
+      r.style.setProperty('--a2',(.35+.35*d).toFixed(2));
+      r.style.setProperty('--d',(hero ? (.2+Math.abs(i-(n-1)/2)*.03) : i*.02)+'s');
+      el.appendChild(r);
+    }
+  }
+  const mobile = innerWidth < 700;
+  makeRays(document.getElementById('heroRays'), mobile?16:36, true);
+  makeRays(document.getElementById('ctaRays'), mobile?12:32, false);
+
+  // Scroll reveal
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); countUp(e.target); }
+  }), {threshold:.15, rootMargin:'0px 0px -60px 0px'});
+  document.querySelectorAll('.rv').forEach(el => io.observe(el));
+
+  // Count-up numbers
+  function countUp(root){
+    root.querySelectorAll?.('[data-count]').forEach(el => {
+      const end=+el.dataset.count, pre=el.dataset.prefix||'', suf=el.dataset.suffix||'';
+      if(reduce){ el.textContent=pre+end+suf; return; }
+      let t0=null; const step=t=>{ t0??=t; const p=Math.min((t-t0)/1200,1); el.textContent=pre+Math.round(end*(1-Math.pow(1-p,3)))+suf; if(p<1) requestAnimationFrame(step); };
+      requestAnimationFrame(step);
+    });
+  }
+
+  // Nav: blur on scroll, active link, mobile menu
+  const nav=document.getElementById('nav');
+  document.getElementById('burger').onclick=()=>nav.classList.toggle('open');
+  document.querySelectorAll('#links a').forEach(a=>a.onclick=()=>nav.classList.remove('open'));
+  const sections=[...document.querySelectorAll('main section[id]')];
+  const links=[...document.querySelectorAll('#links a')];
+
+  // Parallax
+  const rays=document.getElementById('heroRays'), cards=document.getElementById('heroCards'), photoImg=document.getElementById('photoImg'), photo=document.getElementById('photo');
+  let ticking=false;
+  function onScroll(){
+    const y=scrollY;
+    nav.classList.toggle('scrolled', y>30);
+    let cur=sections[0].id; for(const s of sections){ if(s.getBoundingClientRect().top < innerHeight*.4) cur=s.id; }
+    links.forEach(a=>a.classList.toggle('active', a.getAttribute('href')==='#'+cur));
+    if(!reduce){
+      if(y < innerHeight*1.5){ rays.style.transform=`translateY(${y*.25}px)`; cards.style.transform=`translateY(${-y*.08}px)`; }
+      const r=photo.getBoundingClientRect();
+      if(r.top < innerHeight && r.bottom > 0){ photoImg.style.transform=`translateY(${(r.top - innerHeight/2)*-.06}px) scale(1.02)`; }
+    }
+    ticking=false;
+  }
+  addEventListener('scroll',()=>{ if(!ticking){ requestAnimationFrame(onScroll); ticking=true; } },{passive:true});
+  onScroll();
+
+  // Steps animate once hero card is in view
+  const rc=document.getElementById('resultCard'); setTimeout(()=>rc.classList.add('in'),1200);
+
+  // PayPal hosted buttons (two placements)
+  function renderPayPal(){
+    try{ paypal.HostedButtons({hostedButtonId:'X56FHS6C8M9FG'}).render('#paypal-container-X56FHS6C8M9FG'); }catch(e){ console.warn('PayPal', e); }
+  }
+  if(window.paypal) renderPayPal(); else document.getElementById('paypal-sdk').addEventListener('load', renderPayPal);
+
+  document.getElementById('year').textContent=new Date().getFullYear();
+})();
+</script>
+</body>
+</html>
